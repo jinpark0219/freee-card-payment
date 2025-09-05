@@ -1,15 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone', // Docker 빌드용
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: process.env.NODE_ENV === 'production' 
-          ? `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/:path*`
-          : 'http://localhost:3000/:path*' // 로컬 개발용
-      }
-    ]
+  output: 'export', // S3 정적 배포용
+  trailingSlash: true,
+  images: {
+    unoptimized: true
   }
 }
 
