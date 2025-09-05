@@ -1,12 +1,15 @@
 # Node.js 18 Alpine 기반 이미지 사용
 FROM node:18-alpine
 
+# curl 설치 (헬스체크용)
+RUN apk add --no-cache curl
+
 # 작업 디렉토리 설정
 WORKDIR /app
 
-# 패키지 파일 복사 및 의존성 설치
+# 패키지 파일 복사 및 의존성 설치 (개발 의존성 포함)
 COPY package*.json ./
-RUN npm ci --only=production && npm cache clean --force
+RUN npm ci && npm cache clean --force
 
 # 소스 코드 복사
 COPY . .
