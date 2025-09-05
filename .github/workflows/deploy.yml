@@ -9,7 +9,7 @@ on:
 env:
   AWS_REGION: ap-northeast-1  # 도쿄 리전
   ECR_REPOSITORY: freee-card-backend
-  S3_BUCKET: freee-card-frontend
+  S3_BUCKET: freee-card-payment-frontend
 
 jobs:
   test:
