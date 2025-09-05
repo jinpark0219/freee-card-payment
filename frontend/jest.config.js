@@ -8,7 +8,7 @@ const createJestConfig = nextJest({
 // Jest에 전달할 커스텀 설정
 const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-  moduleNameMapping: {
+  moduleNameMapper: {
     // 절대 경로 imports 처리
     '^@/(.*)$': '<rootDir>/src/$1',
   },

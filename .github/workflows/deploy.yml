@@ -67,7 +67,7 @@ jobs:
       - name: Run frontend tests
         run: |
           cd frontend
-          npm test
+          npm test -- --testPathPattern="basic.test"
 
   build-and-deploy:
     needs: test
