@@ -6,7 +6,7 @@ const nextConfig = {
       {
         source: '/api/:path*',
         destination: process.env.NODE_ENV === 'production' 
-          ? `${process.env.NEXT_PUBLIC_API_URL}/:path*`
+          ? `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/:path*`
           : 'http://localhost:3000/:path*' // 로컬 개발용
       }
     ]

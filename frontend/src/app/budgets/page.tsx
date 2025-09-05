@@ -251,7 +251,7 @@ export default function BudgetsPage() {
               <span className="font-medium">안전</span>
             </div>
             <p className="text-sm text-green-600">
-              {(budgetData?.categories || []).filter(c => c.status === 'safe').length}개 카테고리가 안전 범위 내에 있습니다
+              {(budgetData?.categories || []).filter((c: BudgetCategory) => c.status === 'safe').length}개 카테고리가 안전 범위 내에 있습니다
             </p>
           </div>
           
@@ -261,7 +261,7 @@ export default function BudgetsPage() {
               <span className="font-medium">주의</span>
             </div>
             <p className="text-sm text-yellow-600">
-              {(budgetData?.categories || []).filter(c => c.status === 'warning').length}개 카테고리가 80% 이상 사용되었습니다
+              {(budgetData?.categories || []).filter((c: BudgetCategory) => c.status === 'warning').length}개 카테고리가 80% 이상 사용되었습니다
             </p>
           </div>
           
@@ -271,7 +271,7 @@ export default function BudgetsPage() {
               <span className="font-medium">초과</span>
             </div>
             <p className="text-sm text-red-600">
-              {(budgetData?.categories || []).filter(c => c.status === 'exceeded').length}개 카테고리가 예산을 초과했습니다
+              {(budgetData?.categories || []).filter((c: BudgetCategory) => c.status === 'exceeded').length}개 카테고리가 예산을 초과했습니다
             </p>
           </div>
         </div>
