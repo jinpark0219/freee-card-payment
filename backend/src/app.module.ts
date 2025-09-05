@@ -22,6 +22,7 @@ import { CardProvider } from './domains/card-provider/card-provider.entity';
 import { Budget } from './entities/budget.entity';
 import { BudgetService } from './services/budget.service';
 import { BudgetController } from './controllers/budget.controller';
+import { HealthController } from './controllers/health.controller';
 
 @Module({
   imports: [
@@ -45,7 +46,7 @@ import { BudgetController } from './controllers/budget.controller';
     }),
     TypeOrmModule.forFeature([Card, CardTransaction, BusinessExpense, BusinessCard, Employee, Company, CardProvider, Budget]),
   ],
-  controllers: [CardController, TransactionController, SeedController, DashboardController, ApprovalController, TestDataController, BudgetController],
+  controllers: [CardController, TransactionController, SeedController, DashboardController, ApprovalController, TestDataController, BudgetController, HealthController],
   providers: [CardService, TransactionService, SeedService, DashboardService, ApprovalService, BudgetService],
 })
 export class AppModule {}

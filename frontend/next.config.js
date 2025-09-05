@@ -1,10 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone', // Docker 빌드용
   async rewrites() {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:3000/:path*' // NestJS 백엔드로 프록시
+        destination: process.env.NODE_ENV === 'production' 
+          ? `${process.env.NEXT_PUBLIC_API_URL}/:path*`
+          : 'http://localhost:3000/:path*' // 로컬 개발용
       }
     ]
   }
