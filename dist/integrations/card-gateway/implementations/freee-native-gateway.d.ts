@@ -1,0 +1,34 @@
+import { CardGateway, TransactionData, CardInfo, PaymentRequest, PaymentResult, WebhookEvent, CardLimits, ConnectionStatus } from '../card-gateway.interface';
+import { CardProviderType } from '../../../domains/card-provider/card-provider.entity';
+export declare class FreeeNativeGateway implements CardGateway {
+    private readonly freeeCardApiClient;
+    private readonly riskEngine;
+    private readonly budgetService;
+    readonly providerType = CardProviderType.FREEE_NATIVE;
+    readonly providerId = "freee-native";
+    readonly supportsRealTime = true;
+    readonly supportsWebhook = true;
+    constructor(freeeCardApiClient: any, riskEngine: any, budgetService: any);
+    getCards(companyId: string): Promise<CardInfo[]>;
+    getCardDetails(cardId: string): Promise<CardInfo>;
+    getTransactions(cardId: string, startDate: Date, endDate: Date): Promise<TransactionData[]>;
+    getTransaction(transactionId: string): Promise<TransactionData>;
+    processPayment(request: PaymentRequest): Promise<PaymentResult>;
+    suspendCard(cardId: string): Promise<boolean>;
+    activateCard(cardId: string): Promise<boolean>;
+    updateCardLimits(cardId: string, limits: CardLimits): Promise<boolean>;
+    handleWebhook(event: WebhookEvent): Promise<void>;
+    healthCheck(): Promise<boolean>;
+    getConnectionStatus(): Promise<ConnectionStatus>;
+    private validatePaymentRequest;
+    private holdTransaction;
+    private handleNewTransaction;
+    private handleUpdatedTransaction;
+    private handleCardStatusChange;
+    private mapToCardInfo;
+    private mapToTransactionData;
+    private syncToFreeeAccounting;
+    private updateFreeeAccountingEntry;
+    private sendRealTimeNotification;
+    private notifyCardStatusChange;
+}

@@ -1,0 +1,38 @@
+import { CardGateway, TransactionData, CardInfo, PaymentRequest, PaymentResult, WebhookEvent, CardLimits, ConnectionStatus } from '../card-gateway.interface';
+import { CardProviderType } from '../../../domains/card-provider/card-provider.entity';
+export declare class JcbPartnerGateway implements CardGateway {
+    readonly providerType = CardProviderType.PARTNER;
+    readonly providerId = "jcb-partner";
+    readonly supportsRealTime = true;
+    readonly supportsWebhook = true;
+    private readonly jcbApiClient;
+    private readonly rateLimiter;
+    private connectionStatus;
+    constructor();
+    getCards(companyId: string): Promise<CardInfo[]>;
+    getCardDetails(cardId: string): Promise<CardInfo>;
+    getTransactions(cardId: string, startDate: Date, endDate: Date): Promise<TransactionData[]>;
+    getTransaction(transactionId: string): Promise<TransactionData>;
+    processPayment(request: PaymentRequest): Promise<PaymentResult>;
+    suspendCard(cardId: string): Promise<boolean>;
+    activateCard(cardId: string): Promise<boolean>;
+    updateCardLimits(cardId: string, limits: CardLimits): Promise<boolean>;
+    handleWebhook(event: WebhookEvent): Promise<void>;
+    healthCheck(): Promise<boolean>;
+    getConnectionStatus(): Promise<ConnectionStatus>;
+    private getAuthHeaders;
+    private handleApiError;
+    private verifyJcbWebhookSignature;
+    private calculateJcbSignature;
+    private processJcbTransactionWebhook;
+    private processJcbCardStatusWebhook;
+    private mapJcbCardToCardInfo;
+    private mapJcbTransactionToTransactionData;
+    private maskCardNumber;
+    private mapJcbStatusToStandard;
+    private saveTransactionToFreee;
+    private syncToFreeeAccountingAsync;
+    private checkBudgetAndNotify;
+    private syncCardStatusToFreee;
+    private notifyCardStatusChange;
+}
