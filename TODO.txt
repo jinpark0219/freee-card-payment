@@ -1,0 +1,38 @@
+# 집에서 해야 할 작업
+
+## 1. GitHub에 코드 Push
+```bash
+git add .
+git commit -m "프론트엔드/백엔드 서버 실행 가능한 상태로 설정 완료"
+git push origin main
+```
+
+## 2. AWS RDS 생성 확인
+- PostgreSQL RDS 인스턴스 생성 완료 확인
+- 보안 그룹 설정 (포트 5432 열기)
+- 파라미터 그룹 설정
+- 백업 설정 확인
+
+## 3. AWS ECS 설정 계속
+- ECS 클러스터 생성
+- 태스크 정의 작성 (백엔드, 프론트엔드)
+- 서비스 생성
+- ALB (Application Load Balancer) 설정
+- 환경변수 설정 (DB 연결 정보 등)
+
+## 4. AWS S3 버킷 설정
+- 프론트엔드 정적 파일 호스팅용 S3 버킷
+- CloudFront 배포 설정
+- 버킷 정책 및 CORS 설정
+
+## 5. 추가 작업 (선택사항)
+- GitHub Actions 워크플로우 수정 (배포 자동화)
+- 도메인 연결 (Route 53)
+- SSL 인증서 설정 (ACM)
+- 모니터링 설정 (CloudWatch)
+
+## 현재 실행 상태
+- 로컬 PostgreSQL: 실행 중 (freee_card DB 생성됨)
+- 백엔드: http://localhost:3000
+- 프론트엔드: http://localhost:3001
+- Docker: PostgreSQL, Redis 컨테이너는 중지됨 (로컬 DB 사용 중)
