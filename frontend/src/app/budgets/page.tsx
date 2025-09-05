@@ -178,7 +178,7 @@ export default function BudgetsPage() {
           </div>
           
           <div className="divide-y divide-gray-200">
-            {(budgetData?.categories || []).map((category) => {
+            {(budgetData?.categories || []).map((category: BudgetCategory) => {
               const StatusIcon = statusIcons[category.status]
               
               return (
