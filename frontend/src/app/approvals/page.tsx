@@ -96,7 +96,7 @@ export default function ApprovalsPage() {
   const { data: expensesData, isLoading } = useQuery({
     queryKey: ['approvals', selectedStatus],
     queryFn: async () => {
-      const response = await fetch(`/api/approvals?status=${selectedStatus}&limit=50`)
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/approvals?status=${selectedStatus}&limit=50`)
       if (!response.ok) throw new Error('Failed to fetch approvals')
       return response.json()
     },
@@ -106,7 +106,7 @@ export default function ApprovalsPage() {
   const { data: stats } = useQuery<ApprovalStats>({
     queryKey: ['approval-stats'],
     queryFn: async () => {
-      const response = await fetch('/api/approvals/stats')
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/approvals/stats`)
       if (!response.ok) throw new Error('Failed to fetch stats')
       return response.json()
     },
@@ -120,7 +120,7 @@ export default function ApprovalsPage() {
       comment?: string
     }) => {
       const endpoint = approved ? 'approve' : 'reject'
-      const response = await fetch(`/api/approvals/${expenseId}/${endpoint}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/approvals/${expenseId}/${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -143,7 +143,7 @@ export default function ApprovalsPage() {
       approved: boolean
       comment?: string
     }) => {
-      const response = await fetch('/api/approvals/bulk', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/approvals/bulk`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

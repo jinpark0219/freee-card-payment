@@ -45,7 +45,7 @@ export default function TransactionsPage() {
   const { data: transactions = [], isLoading } = useQuery({
     queryKey: ['transactions'],
     queryFn: async () => {
-      const response = await fetch('/api/transactions')
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/transactions`)
       if (!response.ok) throw new Error('거래 내역을 불러올 수 없습니다')
       const result = await response.json()
       return result.transactions || []

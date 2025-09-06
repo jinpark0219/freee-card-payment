@@ -12,7 +12,7 @@ export default function Dashboard() {
   const { data: stats } = useQuery({
     queryKey: ['dashboard-stats'],
     queryFn: async () => {
-      const response = await fetch('/api/dashboard/stats')
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/dashboard/stats`)
       if (!response.ok) throw new Error('Failed to fetch stats')
       return response.json()
     },
@@ -21,7 +21,7 @@ export default function Dashboard() {
   const { data: recentTransactions } = useQuery({
     queryKey: ['recent-transactions'],
     queryFn: async () => {
-      const response = await fetch('/api/transactions?limit=5')
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/transactions?limit=5`)
       if (!response.ok) throw new Error('Failed to fetch transactions')
       return response.json()
     },
@@ -30,7 +30,7 @@ export default function Dashboard() {
   const { data: budgetData } = useQuery({
     queryKey: ['budget-overview'],
     queryFn: async () => {
-      const response = await fetch('/api/dashboard/budget')
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/dashboard/budget`)
       if (!response.ok) throw new Error('Failed to fetch budget')
       return response.json()
     },

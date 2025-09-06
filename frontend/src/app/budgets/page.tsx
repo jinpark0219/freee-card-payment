@@ -58,7 +58,7 @@ export default function BudgetsPage() {
   const { data: budgetData, isLoading } = useQuery({
     queryKey: ['budget', selectedMonth],
     queryFn: async () => {
-      const response = await fetch(`/api/budgets/${selectedMonth}`)
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/budgets/${selectedMonth}`)
       if (!response.ok) throw new Error('예산 데이터를 불러올 수 없습니다')
       const result = await response.json()
       return result.data
