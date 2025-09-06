@@ -39,8 +39,15 @@ import { HealthController } from './controllers/health.controller';
         password: configService.get('DB_PASSWORD', ''),
         database: configService.get('DB_NAME', 'freee_card'),
         entities: [Card, CardTransaction, BusinessExpense, BusinessCard, Employee, Company, CardProvider, Budget],
-        synchronize: configService.get('NODE_ENV') !== 'production', // Don't use in production
-        logging: configService.get('NODE_ENV') === 'development',
+        synchronize: false,
+        logging: false,
+        cache: false, // 메모리 절약을 위해 캐시 비활성화
+        maxQueryExecutionTime: 1000, // 느린 쿼리 방지
+        extra: {
+          max: 5, // 최대 연결 수 제한 (기본값: 10)
+          idleTimeoutMillis: 30000,
+          connectionTimeoutMillis: 2000,
+        }
       }),
       inject: [ConfigService],
     }),
